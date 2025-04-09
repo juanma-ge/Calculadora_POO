@@ -29,20 +29,14 @@ class Calculadora(private val ui: IEntradaSalida){
         do {
             try {
                 ui.limpiarPantalla()
-                val (numero1, operador, numero2) = pedirInfo()
-                val resultado = realizarCalculo(numero1, operador, numero2)
-                ui.mostrar("Resultado: %.2f".format(resultado))
-            } catch (e: NumberFormatException) {
-                ui.mostrarError(e.message ?: "Se ha producido un error!")
-            }catch (e: IllegalArgumentException){
-                throw e
-            }catch (e: IllegalArgumentException){
-                throw e
-            }catch (e: IllegalArgumentException){
-                throw e
+                val (num1, operador, num2) = pedirInfo()
+                val resultado = realizarCalculo(num1, operador, num2)
+                ui.mostrar("Resultado: ${"%.2f".format(resultado)}")
+            } catch (e: ArithmeticException) {
+                ui.mostrarError(e.message ?: "Error matemático")
+            } catch (e: Exception) {
+                ui.mostrarError("Error inesperado: ${e.message ?: "desconocido"}")
             }
-        } while (ui.preguntar())
-        ui.limpiarPantalla()
+        } while (ui.preguntar("¿Desea realizar otra operación? (S/N)"))
     }
-
 }
