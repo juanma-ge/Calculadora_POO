@@ -6,28 +6,49 @@ class Calculadora(
 
 ): Operar {
 
-    fun iniciar(){
-        do {
-            scanner.pedirDatos()
-        }while (true)
+    fun iniciar() {
+        var continuar = true
+
+        while (continuar) {
+            println("Introduce el primer número: ")
+            val num1 = readln().toDouble()
+
+            println("Introduce el operador (+, -, *, /): ")
+            val operador = readln()[0]
+
+            println("Introduce el segundo número:")
+            val num2 = readln().toDouble()
+
+            val resultado = calcular(num1, num2, operador)
+
+            if (resultado != null) {
+                println("Resultado: $resultado")
+            }
+
+            println("\n¿Quieres hacer otra operación? (s/n)")
+            continuar = readln() == "s"
+        }
+
+        println("¡Adiós!")
     }
 
-    override fun calcular(a: Double, b: Double, operador: Operador): Double {
-        return try {
-            when (operador) {
-                Operador.SUMA -> a + b
-                Operador.RESTA -> a - b
-                Operador.MULTIPLICACION -> a * b
-                Operador.DIVISION -> {
-                    if (b == 0.0) throw ArithmeticException("No se puede dividir por cero")
+    override fun calcular(a: Double, b: Double, operador: Char): Double? {
+        return when (operador) {
+            '+' -> a + b
+            '-' -> a - b
+            '*' -> a * b
+            '/' -> {
+                if (b == 0.0) {
+                    println("Error: No se puede dividir por cero")
+                    null
+                } else {
                     a / b
                 }
-                else -> throw IllegalArgumentException("Operador no válido")
             }
-        }catch (e: ArithmeticException){
-            throw e
+            else -> {
+                println("Error: Operador no válido")
+                null
+            }
         }
     }
-
-
 }

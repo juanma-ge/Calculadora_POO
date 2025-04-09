@@ -6,7 +6,7 @@ class Scanner {
 
     val scanner = Scanner(System.`in`)
 
-    public fun pedirDatos(){
+    public fun pedirDatos(): Triple<Double, Char, Double> {
         println("Introduce el primer número:")
         val numero1 = scanner.nextDouble()
         println("Introduce el operador (+, -, *, /):")
@@ -14,6 +14,7 @@ class Scanner {
         println("Introduce el segundo número:")
         val numero2 = scanner.nextDouble()
 
+        return Triple(numero1, operador, numero2)
     }
 
 
