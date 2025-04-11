@@ -26,6 +26,34 @@ fun main() {
 
 fun main() {
     Calculadora(Consola()).iniciar()
+
+    fun manejarSinArgumentos(){
+
+    }
+
+    fun manejarConArgumento(arg: String){
+
+    }
+
+    fun manejarCon4Argumentos(arg: String, num1: String, num2: String, operador: String){
+
+
+
+
+    }
+
+    fun recibirArgumentos(args: Array<String>): String {
+        when (args.size) {
+            0 -> manejarSinArgumentos()
+            1 -> manejarConArgumento(args[0])
+            2 -> manejarCon4Argumentos(args[0], args[1], args[2], args[3])
+            else -> {
+                return "**ERROR**: Número Incorrecto"
+            }
+        }
+    }
+
+
 }
 
 
