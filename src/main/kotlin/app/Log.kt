@@ -19,4 +19,8 @@ class Log(val logDirectory: String) {
         return dir.listFiles()
     }
 
+    fun registrarOperacion(operacion: String, resultado: String){
+
+    }
+
 }
